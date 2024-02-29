@@ -11,7 +11,7 @@ Open-source **Bbox Express** - Created by `Student of Bestlink of Phillipines` o
 - `DB Tools`: SQLAlchemy ORM, Flask-Migrate (schema migrations)
 - Session-Based authentication (via **flask_login**), Forms validation
 
-![Bbox Express - In development.](https://ibb.co/yPZj65q)
+![Bbox Express - In development.](https://suwibaki099.github.io/logistic/apps/static/assets/img/bbox-express-logo.png)
 
 <br />
 
