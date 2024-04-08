@@ -1,0 +1,34 @@
+{
+  "menu": [
+    {
+      "url": "/",
+      "name": "Home",
+      "icon": "menu-icon tf-icons ti ti-smart-home",
+      "slug": "pages-home"
+    },
+    {
+      "name": "User Management",
+      "icon": "menu-icon tf-icons ti ti-user",
+      "slug": "management",
+      "submenu": [
+        {
+          "url": "/vendors",
+          "name": "Vendor Management",
+          "slug": "management-vendors"
+        },
+        {
+          "url": "/suppliers",
+          "name": "supplier Management",
+          "slug": "management-suppliers"
+        }
+      ]
+    },
+    {
+      "url": "/bbox-chat",
+      "name": "Bbox chat",
+      "icon": "menu-icon tf-icons ti ti-link",
+      "slug": "bbox-chat",
+      "target": "_blank"
+    }
+  ]
+}
