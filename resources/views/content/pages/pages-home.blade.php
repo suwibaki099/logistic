@@ -27,19 +27,18 @@ $configData = Helper::appClasses();
       @endif
   {{--  end of alerts --}}
 
-<h4>Welcome {{auth()->user()->name}} to Bbox Express!😊 <button type="button" class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="collapse" href="#collapseExample">
-        <i class="ti ti-dots-vertical"></i>
-    </button></h4>
+<h4>Welcome {{auth()->user()->name}} to Bbox Express!😊 </h4>
 
-<div class="row collapse" id="collapseExample">
+@if (auth()->user()->role == 'Administrator')
+<div class="row" >
     <div class="col-md">
         <div class="card mb-lg-0 mb-4">
             <div class="card-body text-center">
                 <h2>
-                    <i class="ti ti-shopping-cart text-success display-6"></i>
+                    <i class="ti ti-target text-danger display-6"></i>
                 </h2>
-                <h4>Monthly Sales</h4>
-                <h5>2362</h5>
+                <h4>Deactivated</h4>
+                <h5>{{$deactivated}}</h5>
             </div>
         </div>
     </div>
@@ -47,10 +46,10 @@ $configData = Helper::appClasses();
         <div class="card drag-item mb-lg-0 mb-4">
             <div class="card-body text-center">
                 <h2>
-                    <i class="ti ti-world text-info display-6"></i>
+                    <i class="ti ti-user text-info display-6"></i>
                 </h2>
-                <h4>Monthly Visits</h4>
-                <h5>687,123</h5>
+                <h4>Supplier</h4>
+                <h5>{{$supplier}}</h5>
             </div>
         </div>
     </div>
@@ -60,14 +59,15 @@ $configData = Helper::appClasses();
                 <h2>
                     <i class="ti ti-user text-primary display-6"></i>
                 </h2>
-                <h4>Users</h4>
-                <h5>105,652</h5>
+                <h4>Vendors</h4>
+                <h5>{{$vendor}}</h5>
             </div>
         </div>
     </div>
 </div>
+
 <!-- information -->
- 
+@else
 <div class="row mt-3">
     <div class="col-md">
       <div class="card mb-3">
@@ -104,7 +104,7 @@ $configData = Helper::appClasses();
       </div>
     </div>
   </div>
-  
+@endif
 <script>
   const target = document.getElementById("alertDiv");
   window.onload = setInterval(() => target.style.opacity = '0', 3000)

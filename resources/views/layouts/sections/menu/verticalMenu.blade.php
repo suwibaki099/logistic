@@ -21,7 +21,7 @@ $configData = Helper::appClasses();
   </div>
   @endif
 
-
+@if (auth()->user()->role == 'Administrator')
   <div class="menu-inner-shadow"></div>
 
   <ul class="menu-inner py-1">
@@ -83,5 +83,37 @@ $configData = Helper::appClasses();
     @endif
     @endforeach
   </ul>
+
+  @else
+
+  <div class="menu menu-vertical bg-menu-theme py-3" id="menu-1" style="height: 450px">
+    <ul class="menu-inner">
+      <li class="menu-item">
+        <a class="menu-link" href="/"><i class="menu-icon ti ti-smart-home"></i>
+        <div>
+          Home
+        </div></a>
+      </li>
+      <li class="menu-item">
+        <a class="menu-link" href="javascript:void(0)"><i class="menu-icon ti ti-thumb-up"></i>
+        <div>
+          Bid
+        </div></a>
+      </li>
+      <li class="menu-item">
+        <a class="menu-link" href="javascript:void(0)"><i class="menu-icon ti ti-thumb-up"></i>
+        <div>
+          Deliver Items
+        </div></a>
+      </li>
+      <li class="menu-item">
+        <a class="menu-link" href="/bbox-chat" target="_blank"><i class="menu-icon ti ti-message-dots"></i>
+        <div>
+          Chat
+        </div></a>
+      </li>
+    </ul>
+  </div>
+  @endif
 
 </aside>

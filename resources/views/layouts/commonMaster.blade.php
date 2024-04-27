@@ -16,6 +16,9 @@ $contentLayout = (isset($container) ? (($container === 'container-xxl') ? "layou
     {{ config('variables.templateName') ? config('variables.templateName') : 'TemplateName' }} -
     {{ config('variables.templateSuffix') ? config('variables.templateSuffix') : 'TemplateSuffix' }}
   </title>
+  {{-- redirect the acc if Deactivated --}}
+  {{-- <meta http-equiv="refresh"  content="0; url={{ route('logout') }}" /> --}}
+
   <meta name="description" content="{{ config('variables.templateDescription') ? config('variables.templateDescription') : '' }}" />
   <meta name="keywords" content="{{ config('variables.templateKeyword') ? config('variables.templateKeyword') : '' }}">
   <!-- laravel CRUD token -->
@@ -41,7 +44,11 @@ $contentLayout = (isset($container) ? (($container === 'container-xxl') ? "layou
   @include('layouts/sections/scriptsIncludes' . $isFront)
 </head>
 
-<body>
+<body @if(Auth::check() && Auth::user()->status == 'Deactivated') onload="event.preventDefault(); document.getElementById('logout-form').submit();" @endif>
+  {{-- auto logout if the user is Deactivated --}}
+  <form method="POST" id="logout-form" action="{{ route('logout') }}">
+    @csrf
+  </form>
   <style>
     #alertDiv {
       transition: opacity 1s;
@@ -63,6 +70,11 @@ $contentLayout = (isset($container) ? (($container === 'container-xxl') ? "layou
  let table = new DataTable('#myTable', {
     // options
 });
+
+function myFunction() {
+  location.replace("https://www.w3schools.com")
+}
+
 </script>
 </body>
 

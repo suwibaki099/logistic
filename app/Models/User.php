@@ -29,6 +29,7 @@ class User extends Authenticatable
         'company',
         'role',
         'time',
+        'status',
         'password',
     ];
 
@@ -63,8 +64,11 @@ class User extends Authenticatable
     ];
 
     // filter for vendor
-    public function scopeFilter($query)
+    public function scopeFilter($query, $filters)
     {
-        $query->where('role', 'like', '%' . 'Vendor' . '%');
+        if ($filters ?? false) {
+            $query->where('role', 'like', '%' . $filters . '%')
+                ->orWhere('status', 'like', '%' . $filters . '%');
+        }
     }
 }

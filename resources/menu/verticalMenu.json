@@ -26,7 +26,7 @@
     {
       "url": "/bbox-chat",
       "name": "Bbox chat",
-      "icon": "menu-icon tf-icons ti ti-link",
+      "icon": "menu-icon ti ti-message-dots",
       "slug": "bbox-chat",
       "target": "_blank"
     }

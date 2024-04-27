@@ -41,14 +41,24 @@ $configData = Helper::appClasses();
         <!-- /Logo -->
         <h5 class="mb-1">Adventure starts here 🚀</h5>
         <p class="mb-4">Make your app management easy and fun!</p>
-
-        <form id="formAuthentication" class="mb-3" action="/users" method="POST">
+        {{-- alerts --}}
+      @if (session()->has('success'))
+      <div id="alertDiv" class="alert alert-success d-flex align-items-center" role="alert">
+        <span class="alert-icon text-success me-2">
+          <i class="ti ti-user ti-xs"></i>
+        </span>
+        {{session('success')}}
+      </div>
+      @endif
+      
+        <form id="formAuthentication" class="mb-3" action="/verification" method="POST" enctype="multipart/form-data">
           @csrf
           <div class="mb-3">
             <label for="Name" class="form-label">Full Name</label>
             <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="johndoe" autofocus value="{{ old('name') }}" />
             <input type="text" class="form-control d-none" id="role" name="role" value="Vendor" />
             <input type="text" class="form-control d-none" id="time" name="time" value="{{time()}}" />
+            <input type="text" class="form-control d-none" id="status" name="status" value="None-verified" />
             @error('name')
             <span class="invalid-feedback" role="alert">
               <span class="fw-medium">{{ $message }}</span>
@@ -68,6 +78,15 @@ $configData = Helper::appClasses();
             <label for="company" class="form-label">Company</label>
             <input type="text" class="form-control @error('company') is-invalid @enderror" id="company" name="company" placeholder="Example Company" value="{{ old('company') }}" />
             @error('company')
+            <span class="invalid-feedback" role="alert">
+              <span class="fw-medium">{{ $message }}</span>
+            </span>
+            @enderror
+          </div>
+          <div class="mb-3">
+            <label for="company" class="form-label">Documents: Business Registration, Tax Registration, Financial Documents, Compliance Certificates, Product Certification</label>
+            <input type="file" multiple class="form-control @error('files') is-invalid @enderror" id="files" name="upload" />
+            @error('files')
             <span class="invalid-feedback" role="alert">
               <span class="fw-medium">{{ $message }}</span>
             </span>
@@ -131,4 +150,9 @@ $configData = Helper::appClasses();
     <!-- /Register -->
   </div>
 </div>
+<script>
+	setTimeout(function () {
+    document.getElementById('alertDiv').remove();
+}, 3000);
+</script>
 @endsection

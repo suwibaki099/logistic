@@ -13,10 +13,19 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('role');
+            $table->integer('carrier_id')->nullable();
+            $table->string('firstname')->nullable();
+            $table->string('lastname')->nullable();
+            $table->string('name')->nullable();
+            $table->string('role')->default('Administrator');
+            $table->string('phone')->nullable();
+            $table->string('address')->nullable();
+            $table->string('google_id')->nullable();
+            $table->string('dlcodes')->nullable();
             $table->string('time')->nullable();
             $table->string('company')->nullable();
+            $table->string('product')->nullable();
+            $table->string('status')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
@@ -24,6 +33,7 @@ return new class extends Migration
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamps();
+            $table->text('readme')->nullable();
         });
     }
 
